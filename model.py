@@ -38,7 +38,6 @@ class Comment(db.Model):
 
 
 
-
 def connect_to_db(app):
     """Connect to database."""
 
