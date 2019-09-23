@@ -13,6 +13,7 @@ class User(db.Model):
     user_id = db.Column(db.Integer, primary_key=True, autoincrement=True)
     fullname = db.Column(db.String(64), nullable=False)
     email = db.Column(db.String(64), nullable=False)
+    password = db.Column(db.String(64), nullable=False)
     rsvp = db.Column(db.String(64), nullable=False)
 
     def __repr__(self):

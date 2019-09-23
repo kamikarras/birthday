@@ -32,7 +32,7 @@ def register_user():
 
     # get email and password for new user from form
     email = request.form['email']
-    name = request.form['name']
+    fullname = request.form['fullname']
     password = request.form['password']
     new_user = User(name=name, email=email, password=password)
 
