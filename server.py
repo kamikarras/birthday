@@ -1,7 +1,7 @@
 from flask import Flask, render_template, redirect, request, flash, session, jsonify
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import desc
-from model import User, app, Comment connect_to_db, db
+from model import User, app, Comment, connect_to_db, db
 from jinja2 import StrictUndefined
 from sqlalchemy.orm import relationship
 
@@ -34,7 +34,7 @@ def register_user():
     email = request.form['email']
     fullname = request.form['fullname']
     password = request.form['password']
-    new_user = User(name=name, email=email, password=password)
+    new_user = User(fullname=fullname, email=email, password=password, rsvp='undeclared')
 
     # add the user to the user database
     db.session.add(new_user)
