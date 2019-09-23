@@ -6,7 +6,11 @@
 <body>
 <ul>
     <li><a href="/register">register</a></li>
+    <li><a href="/login">login</a></li>
 </ul>
+{% for flash in get_flashed_messages() %}
+{{ flash }}
+{% endfor %}
     {% block content %}
 
     this is where stuff goes

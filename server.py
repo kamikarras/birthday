@@ -42,6 +42,36 @@ def register_user():
 
     return redirect("/")
 
+@app.route('/login', methods=['GET'])
+def login_form():
+    """shows the login form"""
+
+    return render_template('login.html')
+
+@app.route('/login', methods=['POST'])
+def login_process():
+
+    # get user details from form
+    email = request.form['email']
+    password = request.form['password']
+
+    # query to get user from database
+    user = User.query.filter_by(email=email).first()
+
+    # check if this is a user and if the password matchs
+    if not user:
+        flash("no such user")
+        return redirect('/login')
+
+    if user.password != password:
+        flash("Password does not match.")
+        return redirect('/login')
+
+    session["user_id"] = user.user_id
+
+    flash('You are logged in')
+    return redirect('/')
+
 
 
 if __name__ == "__main__":
