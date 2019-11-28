@@ -70,7 +70,19 @@ def login_process():
     session["user_id"] = user.user_id
 
     flash('You are logged in')
-    return redirect('/')
+    return redirect(f"/profile/{user.user_id}")
+
+@app.route('/profile/<int:user_id>', methods=['GET'])
+def view_profile(user_id):
+    """shows the user profile"""
+
+    user_id = session.get("user_id")
+    user = User.query.filter_by(user_id=user_id).first()
+    fullname = user.fullname
+
+    return render_template('profile.html',
+                            fullname=fullname,
+                            user_id=user_id)
 
 
 
